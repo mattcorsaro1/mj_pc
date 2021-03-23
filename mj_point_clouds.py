@@ -184,13 +184,9 @@ class PointCloudGenerator(object):
 
             o3d_clouds.append(transformed_cloud)
 
-        # DON'T VISUALIZE UNTIL ALL CLOUDS ARE RENDERED - MUJOCO gets weird
         combined_cloud = o3d.geometry.PointCloud()
         for cloud in o3d_clouds:
             combined_cloud += cloud
-
-        axes = o3d.geometry.TriangleMesh.create_coordinate_frame()
-        o3d.visualization.draw_geometries([combined_cloud, axes])
         return combined_cloud
 
     # https://github.com/htung0101/table_dome/blob/master/table_dome_calib/utils.py#L160
