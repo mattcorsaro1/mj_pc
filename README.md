@@ -25,7 +25,8 @@ In your Python script:
     
     model = load_model_from_path("path_to_your_model_with_cameras")
     sim = MjSim(model)
-    pc_gen = PointCloudGenerator(sim)
+    # Bounds can optionally be provided to crop points outside the workspace
+    pc_gen = PointCloudGenerator(sim, min_bound=(-1., -1., -1.), max_bound=(1., 1., 1.))
     cloud_with_normals = pc_gen.generateCroppedPointCloud()
     
     world_origin_axes = o3d.geometry.TriangleMesh.create_coordinate_frame()
