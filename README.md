@@ -21,8 +21,12 @@ In your Python script:
     from mujoco_py import cymj
     from mujoco_py import load_model_from_path, MjSim
     from mj_pc.mj_point_clouds import PointCloudGenerator
+    import open3d as o3d
     
     model = load_model_from_path("path_to_your_model_with_cameras")
     sim = MjSim(model)
     pc_gen = PointCloudGenerator(sim)
     cloud_with_normals = pc_gen.generateCroppedPointCloud()
+    
+    world_origin_axes = o3d.geometry.TriangleMesh.create_coordinate_frame()
+    o3d.visualization.draw_geometries([cloud_with_normals, world_origin_axes])
